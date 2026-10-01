@@ -15,26 +15,33 @@
  */
 
 
-public class InClass {
+public class StackOfCharacters {
     private char[] elements;
     private int size;
 
-    public void StackOfCharacters() {
-       this.elements;
-       this.size;
+    public StackOfCharacters() {
+        this.elements = new char[0];
+        this.size = 0;
     }
 
-    public void StackOfCharacters(int Capacity) {
+    public StackOfCharacters (int Capacity) {
        this.elements = new char[Capacity];
-       this.size = 0;
+       this.size = this.elements.length;
+
     }
-    public boolean empty() {
-        return 0;
+    public boolean empty(char[] elements) {
+        if(elements.length == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        
 
     }
     
-    public char peek() {
-        return 0;
+    public char peek() {`
+        
     }
 
     public void push(char value) {
