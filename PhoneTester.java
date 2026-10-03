@@ -1,5 +1,5 @@
 /*
-    InClass - 
+   Lab 3 Programming II 
    Benjamin O. Morales
    Programming II 
    CSCI 1437
@@ -34,51 +34,74 @@
    
 
 */
+
+// Decloare the package and import statements
+
 import java.util.Scanner;
 
+// Define the PhoneTester class
 public class PhoneTester {
-    
 
-    
+    // Define the main method
+
     static void main(String[] args) {
+        // Create a Scanner object to read input from the user
         Scanner input = new Scanner(System.in);
+
+        // Declare variables to hold the phone number, validity status, stack, and valid number
         String phoneNumber;
-        boolean isValid;
+        boolean valid = true;
+
+        // Create a StackOfCharacters object to store parenthesis
         StackOfCharacters stack = new StackOfCharacters();
+        // Create a StringBuilder object to store the valid phone number
         StringBuilder validNumber = new StringBuilder();
+
+        // Define a string variable to hold the pattern for a valid phone number
         String pattern = "\\d{3}-\\d{3}-\\d{4}";
-        
-        
+
+        // Prompt the user to enter a phone number and read the input
         System.out.print("Enter a phone number: ");
         phoneNumber = input.nextLine();
 
+        // Append the entered phone number to the validNumber StringBuilder
+        validNumber.append(phoneNumber);
+
+
+        // Print the entered phone number and the pattern for a valid phone number
+        for (int i = 0; i < phoneNumber.length(); i++) {
+
+            // Get the current character from the phone number
+            char ch = phoneNumber.charAt(i);
+
+            // Check if the character is an opening parenthesis, closing parenthesis, or a valid digit/dash
+            if (ch == '(') {
+                stack.push(ch);
+            } else if (ch == ')') {
+                if (stack.empty()) {
+                    valid = false;
+                    break;
+                }
+                stack.pop();
+            } else if (ch != '-' && !Character.isDigit(ch)) {
+                valid = false;
+                break;
+            }
+        }
+        // Check if the stack is empty after processing all characters
+
+        if (!stack.empty()) {
+            valid = false;
+        }
 
         
-
-        while(isValid = true) {
-            int i = 0;
-            if(phoneNumber.charAt(i) == '(') {
-                stack.push(phoneNumber.charAt(i));
-            }
-            if(phoneNumber.charAt(i) == ')') {
-                stack.pop(phoneNumber.charAt(i));
-                
-            }
-            if(phoneNumber.empty() == true) {
-                isValid = false;
-            }
-            if(phoneNumber.charAt(i) != '(' || phoneNumber.charAt(i) != ')') {
-                validNumber.append(phoneNumber.charAt(i));
-            }
-
-            i++;
-            
-
+        if (valid) {
+            System.out.println("Valid number: " + validNumber.toString());
+        } else {
+            System.out.println("Invalid phone number format.");
         }
+        
+        
     }
-    
-
-    
-
-
 }
+// ...existing code...
