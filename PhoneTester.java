@@ -94,6 +94,7 @@ public class PhoneTester {
             valid = false;
         }
 
+        // Check if the validNumber matches the pattern for a valid phone number
         
         if (valid) {
             System.out.println("Valid number: " + validNumber.toString());
